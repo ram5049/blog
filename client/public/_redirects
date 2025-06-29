@@ -1,0 +1,5 @@
+# Render static site configuration
+# This file tells Render how to handle SPA routing
+
+# Redirect all requests to index.html for client-side routing
+/*    /index.html   200
