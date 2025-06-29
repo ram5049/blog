@@ -14,10 +14,10 @@ export const APP_CONFIG = {
 
 // API Configuration
 export const API_CONFIG = {
-  BASE_URL:
-    process.env.NODE_ENV === "production"
-      ? process.env.REACT_APP_API_URL || "https://your-backend-url.com/api"
-      : "http://localhost:5000/api",
+  BASE_URL: process.env.REACT_APP_API_URL || 
+    (process.env.NODE_ENV === "production" 
+      ? "/api"  // Use relative path in production (served by same server)
+      : "http://localhost:5000/api"),
   TIMEOUT: 10000,
   RETRY_ATTEMPTS: 3,
 };
