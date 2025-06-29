@@ -86,7 +86,7 @@ src/
    Create a `.env` file in the client directory:
 
    ```
-   REACT_APP_API_URL=http://localhost:5000/api
+   REACT_APP_API_URL=https://blog-backend-4h1f.onrender.com/api
    REACT_APP_FRONTEND_URL=http://localhost:3000
    ```
 
