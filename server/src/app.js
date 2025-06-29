@@ -111,15 +111,15 @@ app.use("/api", routes);
 if (process.env.NODE_ENV === "production") {
   // Try multiple possible paths for the React build
   const possiblePaths = [
-    path.join(__dirname, "../build"),           // server/build (copied during build)
+    path.join(__dirname, "../build"), // server/build (copied during build)
     path.join(__dirname, "../../client/build"), // client/build (development)
-    path.join(__dirname, "../frontend"),        // server/frontend (alternative)
+    path.join(__dirname, "../frontend"), // server/frontend (alternative)
   ];
-  
+
   let clientBuildPath = null;
   for (const possiblePath of possiblePaths) {
     try {
-      if (require('fs').existsSync(possiblePath)) {
+      if (require("fs").existsSync(possiblePath)) {
         clientBuildPath = possiblePath;
         break;
       }
@@ -127,7 +127,7 @@ if (process.env.NODE_ENV === "production") {
       // Continue to next path
     }
   }
-  
+
   if (clientBuildPath) {
     console.log(`Serving static files from: ${clientBuildPath}`);
     app.use(express.static(clientBuildPath));
@@ -147,8 +147,8 @@ if (process.env.NODE_ENV === "production") {
           api: "/api",
           health: "/api/health",
           posts: "/api/posts",
-          auth: "/api/auth"
-        }
+          auth: "/api/auth",
+        },
       });
     });
   }
