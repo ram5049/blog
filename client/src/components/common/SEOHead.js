@@ -12,9 +12,10 @@ const SEOHead = ({
 }) => {
   const siteTitle = "Modern Blog";
   const siteDescription = "A modern, minimalist blog platform";
-  const siteUrl = process.env.REACT_APP_FRONTEND_URL || 
-    (process.env.NODE_ENV === "production" 
-      ? "https://your-frontend-url.com"  // Replace with your deployed frontend URL
+  const siteUrl =
+    process.env.REACT_APP_FRONTEND_URL ||
+    (process.env.NODE_ENV === "production"
+      ? "https://your-frontend-url.com" // Replace with your deployed frontend URL
       : "http://localhost:3000");
 
   const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;

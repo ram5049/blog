@@ -3,6 +3,7 @@
 ## Current Deployment Status
 
 ### Backend (Server)
+
 - **Status**: ✅ Deployed
 - **Platform**: Render
 - **URL**: https://blog-backend-4h1f.onrender.com
@@ -10,6 +11,7 @@
 - **Database**: MongoDB Atlas (connected)
 
 ### Frontend (Client)
+
 - **Status**: 🟡 Ready for deployment
 - **Build**: ✅ Production build generated
 - **API Configuration**: ✅ Updated to use deployed backend
@@ -19,11 +21,13 @@
 ### Option 1: Deploy to Vercel (Recommended)
 
 1. **Install Vercel CLI**:
+
    ```bash
    npm install -g vercel
    ```
 
 2. **Deploy from client directory**:
+
    ```bash
    cd client
    vercel --prod
@@ -36,6 +40,7 @@
 ### Option 2: Deploy to Netlify
 
 1. **Build the project**:
+
    ```bash
    cd client
    npm run build
@@ -51,6 +56,7 @@
 The backend is already configured to serve the React build files in production:
 
 1. **Copy build files to server**:
+
    ```bash
    # From client directory
    npm run build
@@ -63,12 +69,14 @@ The backend is already configured to serve the React build files in production:
 ## Environment Variables
 
 ### Client (.env)
+
 ```env
 REACT_APP_API_URL=https://blog-backend-4h1f.onrender.com/api
 REACT_APP_FRONTEND_URL=https://your-frontend-url.com
 ```
 
 ### Server (.env)
+
 ```env
 NODE_ENV=production
 PORT=5000
@@ -81,6 +89,7 @@ ALLOWED_ORIGINS=https://your-frontend-url.com,https://blog-backend-4h1f.onrender
 ## Changes Made for Production
 
 ### ✅ Backend Updates
+
 - Added production environment configuration
 - Configured CORS for cross-origin requests
 - Added middleware to serve static React files
@@ -88,6 +97,7 @@ ALLOWED_ORIGINS=https://your-frontend-url.com,https://blog-backend-4h1f.onrender
 - Added proper error handling and logging
 
 ### ✅ Frontend Updates
+
 - Removed all localhost references from source code
 - Updated API configuration to use deployed backend URL
 - Modified axios instance to use production endpoints
@@ -96,6 +106,7 @@ ALLOWED_ORIGINS=https://your-frontend-url.com,https://blog-backend-4h1f.onrender
 - Updated documentation with correct URLs
 
 ### ✅ Security & Configuration
+
 - Added proper .gitignore files
 - Created .env.example files for both client and server
 - Configured environment variables for production
@@ -105,6 +116,7 @@ ALLOWED_ORIGINS=https://your-frontend-url.com,https://blog-backend-4h1f.onrender
 ## Testing Production Build
 
 ### Test Backend API
+
 ```bash
 # Test API endpoints
 curl https://blog-backend-4h1f.onrender.com/api/health
@@ -112,6 +124,7 @@ curl https://blog-backend-4h1f.onrender.com/api/posts
 ```
 
 ### Test Frontend Build
+
 ```bash
 cd client
 npm run build
@@ -136,6 +149,7 @@ npx serve -s build -p 3000
 4. **Environment Variables**: Ensure all required env vars are set in production
 
 ### Debug Commands
+
 ```bash
 # Check environment variables
 echo $REACT_APP_API_URL

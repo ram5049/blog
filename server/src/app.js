@@ -7,6 +7,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
 const path = require("path");
+const fs = require("fs");
 
 const logger = require("./config/logger");
 const { connectDB } = require("./config/database");
@@ -108,13 +109,49 @@ app.use("/api", routes);
 
 // Serve static files in production
 if (process.env.NODE_ENV === "production") {
-  const clientBuildPath = path.join(__dirname, "../../client/build");
-  app.use(express.static(clientBuildPath));
+  // Try multiple possible paths for the React build
+  const possiblePaths = [
+    path.join(__dirname, "../build"),           // server/build (copied during build)
+    path.join(__dirname, "../../client/build"), // client/build (development)
+    path.join(__dirname, "../frontend"),        // server/frontend (alternative)
+  ];
+  
+  let clientBuildPath = null;
+  for (const possiblePath of possiblePaths) {
+    try {
+      if (require('fs').existsSync(possiblePath)) {
+        clientBuildPath = possiblePath;
+        break;
+      }
+    } catch (err) {
+      // Continue to next path
+    }
+  }
+  
+  if (clientBuildPath) {
+    console.log(`Serving static files from: ${clientBuildPath}`);
+    app.use(express.static(clientBuildPath));
 
-  // Catch all handler for SPA
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(clientBuildPath, "index.html"));
-  });
+    // Catch all handler for SPA
+    app.get("*", (req, res) => {
+      res.sendFile(path.join(clientBuildPath, "index.html"));
+    });
+  } else {
+    console.log("Static build files not found. Running in API-only mode.");
+    // API-only mode - return a simple message for root route
+    app.get("*", (req, res) => {
+      res.json({
+        message: "Blog API Server",
+        version: "1.0.0",
+        endpoints: {
+          api: "/api",
+          health: "/api/health",
+          posts: "/api/posts",
+          auth: "/api/auth"
+        }
+      });
+    });
+  }
 }
 
 // 404 handler

@@ -4,9 +4,10 @@ import toast from "react-hot-toast";
 
 // Create axios instance with base configuration
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 
-    (process.env.NODE_ENV === "production" 
-      ? "https://blog-backend-4h1f.onrender.com/api"  // Use deployed backend URL in production
+  baseURL:
+    process.env.REACT_APP_API_URL ||
+    (process.env.NODE_ENV === "production"
+      ? "https://blog-backend-4h1f.onrender.com/api" // Use deployed backend URL in production
       : "http://localhost:5000/api"),
   timeout: 10000,
   headers: {

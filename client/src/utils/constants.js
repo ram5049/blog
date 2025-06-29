@@ -14,9 +14,10 @@ export const APP_CONFIG = {
 
 // API Configuration
 export const API_CONFIG = {
-  BASE_URL: process.env.REACT_APP_API_URL || 
-    (process.env.NODE_ENV === "production" 
-      ? "https://blog-backend-4h1f.onrender.com/api"  // Use deployed backend URL in production
+  BASE_URL:
+    process.env.REACT_APP_API_URL ||
+    (process.env.NODE_ENV === "production"
+      ? "https://blog-backend-4h1f.onrender.com/api" // Use deployed backend URL in production
       : "http://localhost:5000/api"),
   TIMEOUT: 10000,
   RETRY_ATTEMPTS: 3,

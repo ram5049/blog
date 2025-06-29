@@ -6,11 +6,14 @@
     "install-client": "cd client && npm install",
     "install-server": "cd server && npm install",
     "install-all": "npm run install-client && npm run install-server",
-    "build": "cd client && npm run build",
+    "build": "cd client && npm run build && mkdir -p server/build && cp -r client/build/* server/build/",
+    "build-windows": "cd client && npm run build && if not exist server\\build mkdir server\\build && xcopy client\\build\\* server\\build\\ /s /e /y",
     "start": "cd server && npm start",
     "dev-client": "cd client && npm start",
     "dev-server": "cd server && npm run dev",
-    "deploy": "npm run build && npm run start"
+    "deploy": "npm run build && npm run start",
+    "render-build": "npm run install-all && npm run build",
+    "render-start": "npm run start"
   },
   "repository": {
     "type": "git",
